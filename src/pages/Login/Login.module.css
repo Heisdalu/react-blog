@@ -1,0 +1,30 @@
+.loginMain {
+  height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.signIn {
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.333);
+  outline: none;
+  font-size: 1.1rem;
+}
+
+.signIn img {
+  height: 30px;
+  margin-right: 7px;
+}
+
+
+.loginTitle {
+    margin: 2rem 0 1.5rem 0;
+}
