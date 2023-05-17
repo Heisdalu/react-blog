@@ -1,0 +1,17 @@
+.section___card {
+  max-width: 500px;
+  padding: 1.5rem 1rem;
+  background-color: rgb(239, 233, 223);
+  border-radius: 7px;
+  margin: 1rem 0;
+}
+
+.title {
+  font-size: 2rem;
+}
+
+.text {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  line-height: 1.5rem;
+}
