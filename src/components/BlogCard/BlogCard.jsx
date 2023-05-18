@@ -12,6 +12,8 @@ function BlogCard() {
         quam similique aliquam. Qui non assumenda molestiae repudiandae quaerat.
         Totam, cumque doloremque adipisci nulla optio natu
       </p>
+
+      <p className={style.author}>@Divine Obi</p>
     </section>
   );
 }

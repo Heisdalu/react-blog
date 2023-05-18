@@ -15,3 +15,10 @@
   margin-top: 1rem;
   line-height: 1.5rem;
 }
+
+
+.author {
+  font-weight: 800;
+  font-size: 1.3rem;
+  margin-top: 16px;
+}

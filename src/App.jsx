@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
@@ -11,18 +11,22 @@ import { useAuth } from "./hooks/useAuth";
 
 function App() {
   const { isUserLoggedIn, updateUserAuthetication } = useContext(StoreContext);
-  console.log(isUserLoggedIn);
   const { signOutwithClick } = useAuth();
 
-  onAuthStateChanged(auth, (user) => {
-    console.log(user);
-    if (user) {
-      // user is signed in
-      updateUserAuthetication.userisLoggedIn();
-    } else {
-      updateUserAuthetication.userisLoggedOut();
-    }
-  });
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+      if (user) {
+        // user is signed in
+        updateUserAuthetication.userIsLoggedIn({
+          displayName: user.displayName,
+          uid: user.uid,
+        });
+      } else {
+        updateUserAuthetication.userIsLoggedOut();
+      }
+    });
+  }, []);
 
   return (
     <div>
