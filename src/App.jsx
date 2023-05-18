@@ -8,12 +8,16 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase-config";
 import StoreContext from "./store/store-context";
 import { useAuth } from "./hooks/useAuth";
+import { usePost } from "./hooks/usePost";
 
 function App() {
-  const { isUserLoggedIn, updateUserAuthetication } = useContext(StoreContext);
+  const { allPost, isUserLoggedIn, updateUserAuthetication, userData } =
+    useContext(StoreContext);
+  const { getPost } = usePost();
   const { signOutwithClick } = useAuth();
 
   useEffect(() => {
+    getPost();
     onAuthStateChanged(auth, (user) => {
       console.log(user);
       if (user) {
@@ -52,10 +56,13 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage posts={allPost} />} />
         <Route path="/login" element={<Login />} />
         {isUserLoggedIn && (
-          <Route path="/create-post" element={<CreatePost />} />
+          <Route
+            path="/create-post"
+            element={<CreatePost userData={userData} />}
+          />
         )}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
