@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
@@ -5,11 +6,12 @@ import Login from "./pages/Login/Login";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase-config";
 import StoreContext from "./store/store-context";
-import { useContext } from "react";
+import { useAuth } from "./hooks/useAuth";
 
 function App() {
   const { isUserLoggedIn, updateUserAuthetication } = useContext(StoreContext);
   console.log(isUserLoggedIn);
+  const { signOutwithClick } = useAuth();
 
   onAuthStateChanged(auth, (user) => {
     console.log(user);
@@ -27,13 +29,21 @@ function App() {
         <Link to="/" className="btn">
           Home
         </Link>
-        <Link to="login" className="btn">
-          Login
-        </Link>
-        <Link to="create-post" className="btn">
-          Create Post
-        </Link>
-        <button className="btn">Sign Out</button>
+        {!isUserLoggedIn && (
+          <Link to="login" className="btn">
+            Login
+          </Link>
+        )}
+        {isUserLoggedIn && (
+          <Link to="create-post" className="btn">
+            Create Post
+          </Link>
+        )}
+        {isUserLoggedIn && (
+          <button className="btn" onClick={signOutwithClick}>
+            Sign Out
+          </button>
+        )}
       </nav>
 
       <Routes>

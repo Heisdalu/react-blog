@@ -1,14 +1,10 @@
 import style from "./Login.module.css";
 import googleIcon from "../../assets/google.svg";
-import { auth, provider } from "../../config/firebase-config";
-import { signInWithPopup } from "firebase/auth";
+import { useAuth } from "../../hooks/useAuth";
+
 
 function Login() {
-
-  const signInWithGoogle = async () => {
-    const results = await signInWithPopup(auth, provider);
-    console.log(results);
-  };
+  const {signInWithGoogle} = useAuth();
 
   return (
     <div className={style.loginMain}>
