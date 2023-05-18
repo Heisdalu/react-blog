@@ -1,8 +1,9 @@
 import { useContext } from "react";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, Navigate } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import Login from "./pages/Login/Login";
+import CreatePost from "./pages/CreatePost/CreatePost";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase-config";
 import StoreContext from "./store/store-context";
@@ -49,6 +50,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        {isUserLoggedIn && (
+          <Route path="/create-post" element={<CreatePost />} />
+        )}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
