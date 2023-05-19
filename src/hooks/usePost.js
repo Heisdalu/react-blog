@@ -1,5 +1,11 @@
 import { db } from "../config/firebase-config";
-import { collection, getDocs, addDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import StoreContext from "../store/store-context";
@@ -17,8 +23,6 @@ export function usePost() {
         id: doc.id,
       }));
       updateAllPost(postResult);
-
-      console.log(postResult);
     } catch (e) {
       console.log(e);
     }
@@ -34,6 +38,13 @@ export function usePost() {
     }
   };
 
-  return { getPost, addPost };
+  const deletePost = async (post_id) => {
+    try {
+      await deleteDoc(doc(db, "post", post_id));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  return { getPost, addPost, deletePost };
 }
-// export default uPostst

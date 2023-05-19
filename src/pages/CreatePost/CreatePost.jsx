@@ -6,12 +6,9 @@ import { usePost } from "../../hooks/usePost";
 function CreatePost({ userData }) {
   const titleRef = useRef(null);
   const posRef = useRef(null);
-  const { addPost } = usePost();
-
-  console.log({ ...userData });
+  const { addPost, getPost } = usePost();
 
   const [checkError, setCheckError] = useState(false);
-  console.log(userData);
 
   const submitBtn = () => {
     if (titleRef.current.value.length > 1 && posRef.current.value.length > 1) {
@@ -21,6 +18,7 @@ function CreatePost({ userData }) {
         title: titleRef.current.value.trim(),
         content: posRef.current.value.trim(),
       });
+      getPost();
       setCheckError(false);
     } else {
       setCheckError(true);

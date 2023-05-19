@@ -11,15 +11,14 @@ import { useAuth } from "./hooks/useAuth";
 import { usePost } from "./hooks/usePost";
 
 function App() {
-  const { allPost, isUserLoggedIn, updateUserAuthetication, userData } =
+  const {  isUserLoggedIn, updateUserAuthetication, userData } =
     useContext(StoreContext);
   const { getPost } = usePost();
   const { signOutwithClick } = useAuth();
 
   useEffect(() => {
     getPost();
-    onAuthStateChanged(auth, (user) => {
-      console.log(user);
+    onAuthStateChanged(auth, (user) => {      
       if (user) {
         // user is signed in
         updateUserAuthetication.userIsLoggedIn({
@@ -56,7 +55,7 @@ function App() {
       </nav>
 
       <Routes>
-        <Route path="/" element={<HomePage posts={allPost} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         {isUserLoggedIn && (
           <Route
