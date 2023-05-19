@@ -30,8 +30,7 @@ export function usePost() {
 
   const addPost = async (dataObj) => {
     try {
-      const docRef = await addDoc(postCollection, dataObj);
-      console.log(docRef);
+      await addDoc(postCollection, dataObj);
       navigate("/");
     } catch (e) {
       console.log(e.messgae);

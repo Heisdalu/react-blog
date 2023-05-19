@@ -8,8 +8,7 @@ export const useAuth = () => {
   // sign with google
   const signInWithGoogle = async () => {
     try {
-      const results = await signInWithPopup(auth, provider);
-      console.log(results);
+      await signInWithPopup(auth, provider);
       navigate("/");
     } catch (e) {
       console.log(e);
